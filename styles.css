@@ -1,0 +1,49 @@
+body {
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.nav-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 1px solid white;
+}
+
+.table-container {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+table,
+th,
+td {
+  border: 0.5px solid white;
+  border-collapse: collapse;
+  color: black;
+}
+th,
+td {
+  background-color: #67dbdb;
+}
+
+button {
+  background-color: red;
+  color: white;
+}
