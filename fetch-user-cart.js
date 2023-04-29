@@ -1,6 +1,21 @@
-//Connect to Database
+// Check if a cookie exists or create it
+var userCookie = '';
 
-//Check if a cookie exists or create it
+const cookie = document.cookie.match('(^|;)\\s*userCookie\\s*=\\s*([^;]+)');
+if (cookie) {
+  // If the cookie exists, set the value of the outside variable to the cookie value
+  userCookie = cookie[2];
+} else {
+  // If the cookie doesn't exist, create it with a value of "test"
+  const date = new Date();
+  const cookieValue = Number(date);
+
+  // Set cookie expiry to 7 days from now
+  date.setTime(date.getTime() + 7 * 24 * 60 * 60 * 1000);
+  document.cookie = `userCookie=${cookieValue}; expires=${date.toGMTString()}; path=/`;
+
+  userCookie = cookieValue;
+}
 
 //Remove a book from the user's cart
 function removeBookFromCart(bookId = 0) {
@@ -42,7 +57,7 @@ function getAllBooksFromCart() {
     //Delete Button
     row.insertCell(
       5,
-    ).innerHTML = `<button onClick="removeBookFromCart(${book.id})">Delete</button>`;
+    ).innerHTML = `<button class="delete" onClick="removeBookFromCart(${book.id})">Delete</button>`;
   });
 }
 

@@ -44,6 +44,13 @@ td {
 }
 
 button {
-  background-color: red;
   color: white;
+}
+
+button.delete {
+  background-color: red;
+}
+
+button.add {
+  background-color: green;
 }
