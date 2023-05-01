@@ -21,6 +21,16 @@ if (cookie) {
 function removeBookFromCart(bookId = 0) {
   console.log('Removing book: ', bookId);
 
+//Fetch all of the books in the user's cart
+const books = /* fetch books from the user's cart */ [];
+
+//Find the book with the specified bookId
+const bookIndex = books.findIndex((book) => book.id === bookId);
+
+//If the book is found, remove it from the array
+if (bookIndex !== -1) {
+  books.splice(bookIndex, 1);
+}
   //Refetch books
   getAllBooksFromCart();
 }
