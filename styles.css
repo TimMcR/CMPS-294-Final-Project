@@ -4,6 +4,8 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  padding: 0px;
+  margin: 0px;
 }
 
 a {
@@ -53,4 +55,12 @@ button.delete {
 
 button.add {
   background-color: green;
+}
+
+.test-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+  height: 30px;
 }
