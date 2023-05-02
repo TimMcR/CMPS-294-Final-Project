@@ -60,7 +60,7 @@ if (!isset($_COOKIE[$cookie_name])) {
         }
 
         // Execute query
-        $sql = "SELECT Title, Author, ISBN, Publisher, Year FROM Carts LEFT JOIN Inventory ON Book_ISBN = ISBN
+        $sql = "SELECT Title, Author, ISBN, Publisher, Year FROM Carts INNER JOIN Inventory ON Book_ISBN = ISBN
                 WHERE User_Cookie = $cookie_value";
         $result = $conn->query($sql);
 
