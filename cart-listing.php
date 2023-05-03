@@ -59,6 +59,14 @@ if (!isset($_COOKIE[$cookie_name])) {
           die("Connection failed: " . $conn->connect_error);
         }
 
+         // Delete book from cart if remove button is clicked
+         if (isset($_POST['remove'])) {
+          $book_isbn = $_POST['isbn'];
+
+          $sql = "DELETE FROM Carts WHERE User_Cookie = $cookie_value AND Book_ISBN = $book_isbn";
+          $result = $conn->query($sql);
+        }
+
         // Execute query
         $sql = "SELECT Title, Author, ISBN, Publisher, Year FROM Carts INNER JOIN Inventory ON Book_ISBN = ISBN
                 WHERE User_Cookie = $cookie_value";
@@ -79,10 +87,14 @@ if (!isset($_COOKIE[$cookie_name])) {
             echo "<td>$value</td>";
           }
 
-          // TODO: remove from cart functionality
+          // remove from cart functionality
           echo "<td>
-            <button class=\"delete\" onClick=\"\">Remove from Cart</button>
-          </td>";
+                  <form method=\"post\">
+                    <input type=\"hidden\" name=\"isbn\" value=\"$book_isbn\">
+                    <input type=\"hidden\" name=\"cookie\" value=\"$cookie_value\">
+                    <button class=\"delete\" onClick=\"\">Remove from Cart</button>
+                  </form>
+                </td>";
           echo "</tr>";
         }
 
