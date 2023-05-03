@@ -16,6 +16,14 @@ if (!isset($_COOKIE[$cookie_name])) {
   <meta charset="UTF-8" />
   <title>My Cart</title>
   <link rel="stylesheet" href="styles.css" />
+  <script>
+    function deleteFromCart(isbn){
+      //make request from database
+      //Remove table row
+      //update cart
+
+    }
+  <script/>
 </head>
 
 <body>
@@ -92,7 +100,7 @@ if (!isset($_COOKIE[$cookie_name])) {
                   <form method=\"post\">
                     <input type=\"hidden\" name=\"isbn\" value=\"$book_isbn\">
                     <input type=\"hidden\" name=\"cookie\" value=\"$cookie_value\">
-                    <button class=\"delete\" onClick=\"\">Remove from Cart</button>
+                    <button class=\"delete\" onClick=\"deleteFromCart(<?php echo $book_isbn; ?>)\">Remove from Cart</button>
                   </form>
                 </td>";
           echo "</tr>";
