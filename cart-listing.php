@@ -1,7 +1,7 @@
 <?php
 //Set cookie if it does not exist
 $cookie_name = "userCookie";
-$cookie_value = time();
+$cookie_value = ceil(time() % 1000000);
 
 if (!isset($_COOKIE[$cookie_name])) {
   setcookie($cookie_name, $cookie_value);
@@ -25,9 +25,9 @@ if (!isset($_COOKIE[$cookie_name])) {
       <?php
        //Database variables
        $servername = "localhost";
-       $username = "id20541453_itsakbooks";
-       $password = "aqm#k89ti0/dQ&(1";
-       $dbname = "id20541453_booksbyautumn";
+        $username = "id20669844_294termproject";
+        $password = "[*5GJhmoT&4n(+uH";
+        $dbname = "id20669844_committedlamp";
 
       if(isset($_GET["ISBN"])){
         // Create connection
@@ -60,7 +60,7 @@ if (!isset($_COOKIE[$cookie_name])) {
     ?>
     
     <!-- A banner just to display during testing. Remove before submission -->
-    <div class="test-info">
+    <div class="banner test">
       <h3>
         <?php
         echo "Cookie value: $cookie_value"
@@ -95,7 +95,7 @@ if (!isset($_COOKIE[$cookie_name])) {
 
 
         // Execute query
-        $sql = "SELECT Title, Author, ISBN, Publisher, Year FROM Carts LEFT JOIN Inventory ON Book_ISBN = ISBN
+        $sql = "SELECT Title, Author, ISBN, Publisher, Year FROM Carts INNER JOIN Inventory ON Book_ISBN = ISBN
                 WHERE User_Cookie = $cookie_value";
         $result = $conn->query($sql);
 
