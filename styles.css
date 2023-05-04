@@ -57,10 +57,19 @@ button.add {
   background-color: green;
 }
 
-.test-info {
+a.add {
+  background-color: green;
+  color: white;
+}
+
+.banner {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: red;
+  background-color: green;
   height: 30px;
+}
+
+.test {
+  background-color: red;
 }
