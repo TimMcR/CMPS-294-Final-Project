@@ -37,7 +37,7 @@ if (!isset($_COOKIE[$cookie_name])) {
 
     if (isset($_GET["ISBN"])) {
       // Execute query
-      $id = time();
+      $id = ceil(time() % 1000000);
       $book_isbn = $_GET["ISBN"];
       $sql = "INSERT INTO `Carts` (`Id`, `User_Cookie`, `Book_ISBN`) VALUES ('$id', '$cookie_value', '$book_isbn');";
       $result = $conn->query($sql);
