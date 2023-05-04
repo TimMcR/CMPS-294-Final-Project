@@ -49,14 +49,6 @@ if (!isset($_COOKIE[$cookie_name])) {
       }
     }
     ?>
-    <!-- A banner just to display during testing. Remove before submission -->
-    <div class="banner test">
-      <h3>
-        <?php
-        echo "Cookie value: $cookie_value"
-          ?>
-      </h3>
-    </div>
     <div class="nav-bar">
       <h1>Book Listing</h1>
       <a href="cart-listing.php">My Cart</a>
