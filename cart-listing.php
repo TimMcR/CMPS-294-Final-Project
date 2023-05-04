@@ -1,7 +1,7 @@
 <?php
 //Set cookie if it does not exist
 $cookie_name = "userCookie";
-$cookie_value = time();
+$cookie_value = ceil(time() % 1000000);
 
 if (!isset($_COOKIE[$cookie_name])) {
   setcookie($cookie_name, $cookie_value);
@@ -20,8 +20,37 @@ if (!isset($_COOKIE[$cookie_name])) {
 
 <body>
   <div class="container">
+    <?php
+    //Database variables
+    $servername = "localhost";
+    $username = "id20669844_294termproject";
+    $password = "[*5GJhmoT&4n(+uH";
+    $dbname = "id20669844_committedlamp";
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Check connection
+    if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+    }
+
+    if (isset($_GET["ISBN"])) {
+      $book_isbn = $_GET["ISBN"];
+
+      // Execute query
+      $sql = "DELETE FROM Carts WHERE Book_ISBN = $book_isbn LIMIT 1";
+      $result = $conn->query($sql);
+
+      if ($result === TRUE) {
+        echo "<div class=\"banner\"><h3> Book Removed From Cart</h3></div>";
+      } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+      }
+    }
+    ?>
     <!-- A banner just to display during testing. Remove before submission -->
-    <div class="test-info">
+    <div class="banner test">
       <h3>
         <?php
         echo "Cookie value: $cookie_value"
@@ -45,22 +74,8 @@ if (!isset($_COOKIE[$cookie_name])) {
           </tr>
         </thead>
         <?php
-        //Database variables
-        $servername = "localhost";
-        $username = "id20669844_294termproject";
-        $password = "[*5GJhmoT&4n(+uH";
-        $dbname = "id20669844_committedlamp";
-
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
-
-        // Check connection
-        if ($conn->connect_error) {
-          die("Connection failed: " . $conn->connect_error);
-        }
-
         // Execute query
-        $sql = "SELECT Title, Author, ISBN, Publisher, Year FROM Carts LEFT JOIN Inventory ON Book_ISBN = ISBN
+        $sql = "SELECT Title, Author, ISBN, Publisher, Year FROM Carts INNER JOIN Inventory ON Book_ISBN = ISBN
                 WHERE User_Cookie = $cookie_value";
         $result = $conn->query($sql);
 
@@ -79,10 +94,7 @@ if (!isset($_COOKIE[$cookie_name])) {
             echo "<td>$value</td>";
           }
 
-          // TODO: remove from cart functionality
-          echo "<td>
-            <button class=\"delete\" onClick=\"\">Remove from Cart</button>
-          </td>";
+          echo "<td><a class=\"remove\" href=\"cart-listing.php?ISBN=$book_isbn\">Remove From Cart</a></td>";
           echo "</tr>";
         }
 
