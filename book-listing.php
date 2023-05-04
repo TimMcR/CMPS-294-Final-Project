@@ -74,14 +74,6 @@ if (!isset($_COOKIE[$cookie_name])) {
           </tr>
         </thead>
         <?php
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
-
-        // Check connection
-        if ($conn->connect_error) {
-          die("Connection failed: " . $conn->connect_error);
-        }
-
         // Execute query
         $sql = "SELECT Title, Author, ISBN, Publisher, Year FROM Inventory";
         $result = $conn->query($sql);

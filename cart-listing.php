@@ -8,8 +8,6 @@ if (!isset($_COOKIE[$cookie_name])) {
 } else {
   $cookie_value = $_COOKIE[$cookie_name];
 }
-
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,43 +20,35 @@ if (!isset($_COOKIE[$cookie_name])) {
 
 <body>
   <div class="container">
-      <?php
-       //Database variables
-       $servername = "localhost";
-        $username = "id20669844_294termproject";
-        $password = "[*5GJhmoT&4n(+uH";
-        $dbname = "id20669844_committedlamp";
+    <?php
+    //Database variables
+    $servername = "localhost";
+    $username = "id20669844_294termproject";
+    $password = "[*5GJhmoT&4n(+uH";
+    $dbname = "id20669844_committedlamp";
 
-      if(isset($_GET["ISBN"])){
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
-        // Check connection
-        if ($conn->connect_error) {
-          die("Connection failed: " . $conn->connect_error);
-        }
+    // Check connection
+    if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+    }
 
-        $book_isbn = $_GET["ISBN"];
+    if (isset($_GET["ISBN"])) {
+      $book_isbn = $_GET["ISBN"];
 
-        // Execute query
-        $sql = "DELETE FROM Carts WHERE Book_ISBN = $book_isbn LIMIT 1";
-        $result = $conn->query($sql);
+      // Execute query
+      $sql = "DELETE FROM Carts WHERE Book_ISBN = $book_isbn LIMIT 1";
+      $result = $conn->query($sql);
 
-        if($result === TRUE){
-
-          echo "<div class=\"banner\"><h3> Book Removed From Cart</h3></div>";
-
-
-        }
-          
-
-        // Close connection
-        $conn->close();
+      if ($result === TRUE) {
+        echo "<div class=\"banner\"><h3> Book Removed From Cart</h3></div>";
+      } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
       }
-      
-
+    }
     ?>
-    
     <!-- A banner just to display during testing. Remove before submission -->
     <div class="banner test">
       <h3>
@@ -84,16 +74,6 @@ if (!isset($_COOKIE[$cookie_name])) {
           </tr>
         </thead>
         <?php
-
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
-
-        // Check connection
-        if ($conn->connect_error) {
-          die("Connection failed: " . $conn->connect_error);
-        }
-
-
         // Execute query
         $sql = "SELECT Title, Author, ISBN, Publisher, Year FROM Carts INNER JOIN Inventory ON Book_ISBN = ISBN
                 WHERE User_Cookie = $cookie_value";
