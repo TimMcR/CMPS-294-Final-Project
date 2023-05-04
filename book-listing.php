@@ -16,6 +16,7 @@ if (!isset($_COOKIE[$cookie_name])) {
   <meta charset="UTF-8" />
   <title>Home Page</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/x-icon" href="logo.ico">
 </head>
 
 <body>
@@ -49,6 +50,10 @@ if (!isset($_COOKIE[$cookie_name])) {
       }
     }
     ?>
+    <div class="logo">
+      <img src="logo.png">
+      <h3>Exploding Cat Productions</h3>
+    </div>
     <div class="nav-bar">
       <h1>Book Listing</h1>
       <a href="cart-listing.php">My Cart</a>

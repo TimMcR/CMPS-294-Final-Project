@@ -26,6 +26,16 @@ a {
   border-bottom: 1px solid white;
 }
 
+.logo {
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+}
+
+.logo img {
+  height: 100px;
+}
+
 .table-container {
   margin-top: 50px;
   display: flex;
