@@ -21,7 +21,6 @@ if (!isset($_COOKIE[$cookie_name])) {
 <body>
   <div class="container">
    <?php
-    if(isset($_GET["ISBN"])){
       //Database variables
       $servername = "localhost";
       $username = "id20669844_294termproject";
@@ -35,6 +34,9 @@ if (!isset($_COOKIE[$cookie_name])) {
       if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
       }
+      
+    if(isset($_GET["ISBN"])){
+
 
       // Execute query
 
@@ -76,19 +78,7 @@ if (!isset($_COOKIE[$cookie_name])) {
           </tr>
         </thead>
         <?php
-        //Database variables
-        $servername = "localhost";
-        $username = "id20669844_294termproject";
-        $password = "[*5GJhmoT&4n(+uH";
-        $dbname = "id20669844_committedlamp";
-
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
-
-        // Check connection
-        if ($conn->connect_error) {
-          die("Connection failed: " . $conn->connect_error);
-        }
+        
 
         // Execute query
         $sql = "SELECT Title, Author, ISBN, Publisher, Year FROM Inventory";
