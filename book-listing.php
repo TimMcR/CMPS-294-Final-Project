@@ -1,7 +1,7 @@
 <?php
 //Set cookie if it does not exist
 $cookie_name = "userCookie";
-$cookie_value = time();
+$cookie_value = ceil(time() % 1000000);
 
 if (!isset($_COOKIE[$cookie_name])) {
   setcookie($cookie_name, $cookie_value);
@@ -20,8 +20,39 @@ if (!isset($_COOKIE[$cookie_name])) {
 
 <body>
   <div class="container">
+   <?php
+    if(isset($_GET["ISBN"])){
+      //Database variables
+      $servername = "localhost";
+      $username = "id20669844_294termproject";
+      $password = "[*5GJhmoT&4n(+uH";
+      $dbname = "id20669844_committedlamp";
+
+      // Create connection
+      $conn = new mysqli($servername, $username, $password, $dbname);
+
+      // Check connection
+      if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+      }
+
+      // Execute query
+
+      $id = time();
+      $book_isbn = $_GET["ISBN"];
+      $sql = "INSERT INTO `Carts` (`Id`, `User_Cookie`, `Book_ISBN`) VALUES ('$id', '$cookie_value', '$book_isbn');";
+      $result = $conn->query($sql);
+
+      if ($result === TRUE) {
+      echo "<div class=\"banner\"><h3>Book added to cart successfully!</h3></div>";
+      } else {
+      echo "Error: " . $sql . "<br>" . $conn->error;
+      }
+    
+}
+   ?>
     <!-- A banner just to display during testing. Remove before submission -->
-    <div class="test-info">
+    <div class="banner test">
       <h3>
         <?php
         echo "Cookie value: $cookie_value"
@@ -80,7 +111,7 @@ if (!isset($_COOKIE[$cookie_name])) {
 
           // TODO: add to cart functionality
           echo "<td>
-            <button class=\"add\" onClick=\"\">Add to Cart</button>
+           <a class=\"add\" href=\"book-listing.php?ISBN=$book_isbn\"> Add to Cart  </a>
           </td>";
           echo "</tr>";
         }
