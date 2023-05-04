@@ -47,9 +47,9 @@ if (!isset($_COOKIE[$cookie_name])) {
         <?php
         //Database variables
         $servername = "localhost";
-        $username = "id20669844_294termproject";
-        $password = "[*5GJhmoT&4n(+uH";
-        $dbname = "id20669844_committedlamp";
+        $username = "id20541453_itsakbooks";
+        $password = "aqm#k89ti0/dQ&(1";
+        $dbname = "id20541453_booksbyautumn";
 
         // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);
