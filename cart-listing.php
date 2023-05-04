@@ -41,7 +41,7 @@ if (!isset($_COOKIE[$cookie_name])) {
         $book_isbn = $_GET["ISBN"];
 
         // Execute query
-        $sql = "DELETE FROM Carts WHERE Book_ISBN = $book_isbn";
+        $sql = "DELETE FROM Carts WHERE Book_ISBN = $book_isbn LIMIT 1";
         $result = $conn->query($sql);
 
         if($result === TRUE){
@@ -114,7 +114,7 @@ if (!isset($_COOKIE[$cookie_name])) {
             echo "<td>$value</td>";
           }
 
-          echo "<td><a href=\"cart-listing.php?ISBN=$book_isbn\">Remove From Cart</a></td>";
+          echo "<td><a class=\"remove\" href=\"cart-listing.php?ISBN=$book_isbn\">Remove From Cart</a></td>";
           echo "</tr>";
         }
 
