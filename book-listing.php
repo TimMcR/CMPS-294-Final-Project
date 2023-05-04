@@ -20,39 +20,35 @@ if (!isset($_COOKIE[$cookie_name])) {
 
 <body>
   <div class="container">
-   <?php
-      //Database variables
-      $servername = "localhost";
-      $username = "id20669844_294termproject";
-      $password = "[*5GJhmoT&4n(+uH";
-      $dbname = "id20669844_committedlamp";
+    <?php
+    //Database variables
+    $servername = "localhost";
+    $username = "id20669844_294termproject";
+    $password = "[*5GJhmoT&4n(+uH";
+    $dbname = "id20669844_committedlamp";
 
-      // Create connection
-      $conn = new mysqli($servername, $username, $password, $dbname);
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
-      // Check connection
-      if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-      }
-      
-    if(isset($_GET["ISBN"])){
+    // Check connection
+    if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+    }
 
-
+    if (isset($_GET["ISBN"])) {
       // Execute query
-
       $id = time();
       $book_isbn = $_GET["ISBN"];
       $sql = "INSERT INTO `Carts` (`Id`, `User_Cookie`, `Book_ISBN`) VALUES ('$id', '$cookie_value', '$book_isbn');";
       $result = $conn->query($sql);
 
       if ($result === TRUE) {
-      echo "<div class=\"banner\"><h3>Book added to cart successfully!</h3></div>";
+        echo "<div class=\"banner\"><h3>Book added to cart successfully!</h3></div>";
       } else {
-      echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: " . $sql . "<br>" . $conn->error;
       }
-    
-}
-   ?>
+    }
+    ?>
     <!-- A banner just to display during testing. Remove before submission -->
     <div class="banner test">
       <h3>
@@ -78,8 +74,6 @@ if (!isset($_COOKIE[$cookie_name])) {
           </tr>
         </thead>
         <?php
-        
-
         // Execute query
         $sql = "SELECT Title, Author, ISBN, Publisher, Year FROM Inventory";
         $result = $conn->query($sql);
@@ -99,7 +93,6 @@ if (!isset($_COOKIE[$cookie_name])) {
             echo "<td>$value</td>";
           }
 
-          // TODO: add to cart functionality
           echo "<td>
            <a class=\"add\" href=\"book-listing.php?ISBN=$book_isbn\"> Add to Cart  </a>
           </td>";
