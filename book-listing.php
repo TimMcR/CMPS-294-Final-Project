@@ -1,5 +1,5 @@
 <?php
-//Set cookie if it does not exist
+// Set cookie if it does not exist
 $cookie_name = "userCookie";
 $cookie_value = ceil(time() % 1000000);
 
@@ -22,7 +22,7 @@ if (!isset($_COOKIE[$cookie_name])) {
 <body>
   <div class="container">
     <?php
-    //Database variables
+    // Database variables
     $servername = "localhost";
     $username = "id20669844_294termproject";
     $password = "[*5GJhmoT&4n(+uH";
@@ -43,6 +43,7 @@ if (!isset($_COOKIE[$cookie_name])) {
       $sql = "INSERT INTO `Carts` (`Id`, `User_Cookie`, `Book_ISBN`) VALUES ('$id', '$cookie_value', '$book_isbn');";
       $result = $conn->query($sql);
 
+      // Display banner if successful
       if ($result === TRUE) {
         echo "<div class=\"banner\"><h3>Book added to cart successfully!</h3></div>";
       } else {
@@ -91,8 +92,8 @@ if (!isset($_COOKIE[$cookie_name])) {
           }
 
           echo "<td>
-           <a class=\"add\" href=\"book-listing.php?ISBN=$book_isbn\"> Add to Cart  </a>
-          </td>";
+                  <a class=\"add\" href=\"book-listing.php?ISBN=$book_isbn\"> Add to Cart  </a>
+                </td>";
           echo "</tr>";
         }
 

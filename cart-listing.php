@@ -1,5 +1,5 @@
 <?php
-//Set cookie if it does not exist
+// Set cookie if it does not exist
 $cookie_name = "userCookie";
 $cookie_value = ceil(time() % 1000000);
 
@@ -22,7 +22,7 @@ if (!isset($_COOKIE[$cookie_name])) {
 <body>
   <div class="container">
     <?php
-    //Database variables
+    // Database variables
     $servername = "localhost";
     $username = "id20669844_294termproject";
     $password = "[*5GJhmoT&4n(+uH";
@@ -43,6 +43,7 @@ if (!isset($_COOKIE[$cookie_name])) {
       $sql = "DELETE FROM Carts WHERE Book_ISBN = $book_isbn LIMIT 1";
       $result = $conn->query($sql);
 
+      // Display banner if successful
       if ($result === TRUE) {
         echo "<div class=\"banner\"><h3> Book Removed From Cart</h3></div>";
       } else {
@@ -91,7 +92,9 @@ if (!isset($_COOKIE[$cookie_name])) {
             echo "<td>$value</td>";
           }
 
-          echo "<td><a class=\"remove\" href=\"cart-listing.php?ISBN=$book_isbn\">Remove From Cart</a></td>";
+          echo "<td>
+                  <a class=\"remove\" href=\"cart-listing.php?ISBN=$book_isbn\">Remove From Cart</a>
+                </td>";
           echo "</tr>";
         }
 
