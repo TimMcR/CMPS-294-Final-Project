@@ -1,3 +1,4 @@
+/* Style html */
 body {
   background-color: black;
   color: white;
@@ -8,16 +9,20 @@ body {
   margin: 0px;
 }
 
+/* Style basic anchor tags  */
 a {
   text-decoration: none;
+  color: white;
 }
 
+/* Style page container*/
 .container {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
+/* Style main nav bar */
 .nav-bar {
   display: flex;
   flex-direction: row;
@@ -26,6 +31,18 @@ a {
   border-bottom: 1px solid white;
 }
 
+/* Style team logo */
+.logo {
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+}
+
+.logo img {
+  height: 100px;
+}
+
+/* Style table container */
 .table-container {
   margin-top: 50px;
   display: flex;
@@ -33,6 +50,7 @@ a {
   justify-content: center;
 }
 
+/* Style book table */
 table,
 th,
 td {
@@ -45,18 +63,7 @@ td {
   background-color: #67dbdb;
 }
 
-button {
-  color: white;
-}
-
-button.delete {
-  background-color: red;
-}
-
-button.add {
-  background-color: green;
-}
-
+/* Style cart buttons */
 a.add {
   background-color: green;
   color: white;
@@ -67,14 +74,11 @@ a.remove {
   color: white;
 }
 
+/* Style banner */
 .banner {
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: green;
   height: 30px;
-}
-
-.test {
-  background-color: red;
 }
